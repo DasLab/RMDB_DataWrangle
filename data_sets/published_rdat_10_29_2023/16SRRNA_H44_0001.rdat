@@ -1,0 +1,23 @@
+RDAT_VERSION	0.34
+NAME	16S rRNA, h44, E. coli
+SEQUENCE	AAGAAGUAGGUAGCUUAACCUUCGGGAGGGCGCUUACCACU
+STRUCTURE	.........................................
+OFFSET	1429
+
+
+COMMENT	RNA was prepared using in vitro Synthesis, Assembly, and Translation (iSAT) reactions and probed at 37 C
+COMMENT	iSAT reactions prepared as described in Fritz, B.R., Jamil, O.K., Jewett, M.C. (2015) Implications of macromolecular crowding and reducing conditions for in vitro ribosome construction. Nucleic Acids Res. May 19;43(9):477484
+COMMENT	Reactivities reported as r reactivities, which include contributions from reverse transcription STOPS and MUTATIONS
+COMMENT	r defined in Yu, A.M, Evans, M.E., and Lucks, J.B. (2018) Estimating RNA structure chemical probing reactivites from reverse transcriptase stops and mutations. doi: 10.1101/292532
+COMMENT	field STRUCTURE intentionally left as all dots
+COMMENT	Average reactivities from 3 replicate experiments reported.
+COMMENT	Errors are standard deviations at each nucleotide.
+
+ANNOTATION	experimentType:StandardState
+
+ANNOTATION_DATA:1     	modifier:1M7
+
+SEQPOS	A1430	A1431	G1432	A1433	A1434	G1435	U1436	A1437	G1438	G1439	U1440	A1441	G1442	C1443	U1444	U1445	A1446	A1447	C1448	C1449	U1450	U1451	C1452	G1453	G1454	G1455	A1456	G1457	G1458	G1459	C1460	G1461	C1462	U1463	U1464	A1465	C1466	C1467	A1468	C1469	U1470
+REACTIVITY:1     	0.0003	   0.0001	   0.0003	   0.0001	   0.0003	   0.0006	   0.0000	   0.0000	   0.0001	   0.0008	   0.0002	   0.0005	   0.0006	   0.0009	   0.0010	   0.0004	   0.0018	   0.0006	   0.0002	   0.0009	   0.0041	   0.0002	   0.0001	   0.0001	   0.0000	   0.0001	   0.0001	   0.0000	   0.0001	   0.0001	   0.0002	   0.0004	   0.0007	   0.0002	   0.0004	   0.0002	   0.0001	   0.0005	   0.0001	   0.0006	   0.0008
+
+REACTIVITY_ERROR:1     	0.0003	   0.0000	   0.0002	   0.0001	   0.0002	   0.0001	   0.0000	   0.0000	   0.0001	   0.0008	   0.0003	   0.0005	   0.0007	   0.0015	   0.0006	   0.0004	   0.0012	   0.0004	   0.0002	   0.0003	   0.0016	   0.0002	   0.0001	   0.0001	   0.0000	   0.0001	   0.0000	   0.0000	   0.0000	   0.0000	   0.0002	   0.0003	   0.0007	   0.0003	   0.0007	   0.0000	   0.0001	   0.0006	   0.0001	   0.0007	   0.0014

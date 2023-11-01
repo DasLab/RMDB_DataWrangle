@@ -1,0 +1,23 @@
+RDAT_VERSION	0.34
+NAME	RNAmake tether design 4, strand #1
+SEQUENCE	AAGAAGUAGGUAGCUUAACACCUGUUGUGGCGCGAAACGACCGAUAUUUCCCCCGAUAUGGCGCGAAACCGGGACGCCCGUUGAGCUAACCGGUAC
+STRUCTURE	................................................................................................
+OFFSET	1429
+
+
+COMMENT	RNA was prepared using in vitro Synthesis, Assembly, and Translation (iSAT) reactions and probed at 37 C
+COMMENT	iSAT reactions prepared as described in Fritz, B.R., Jamil, O.K., Jewett, M.C. (2015) Implications of macromolecular crowding and reducing conditions for in vitro ribosome construction. Nucleic Acids Res. May 19;43(9):477484
+COMMENT	Reactivities reported as r reactivities, which include contributions from reverse transcription STOPS and MUTATIONS
+COMMENT	r defined in Yu, A.M, Evans, M.E., and Lucks, J.B. (2018) Estimating RNA structure chemical probing reactivites from reverse transcriptase stops and mutations. doi: 10.1101/292532
+COMMENT	field STRUCTURE intentionally left as all dots
+COMMENT	Average reactivities from 3 replicate experiments reported.
+COMMENT	Errors are standard deviations at each nucleotide.
+
+ANNOTATION	experimentType:StandardState
+
+ANNOTATION_DATA:1     	modifier:1M7
+
+SEQPOS	A1430	A1431	G1432	A1433	A1434	G1435	U1436	A1437	G1438	G1439	U1440	A1441	G1442	C1443	U1444	U1445	A1446	A1447	C1448	A1449	C1450	C1451	U1452	G1453	U1454	U1455	G1456	U1457	G1458	G1459	C1460	G1461	C1462	G1463	A1464	A1465	A1466	C1467	G1468	A1469	C1470	C1471	G1472	A1473	U1474	A1475	U1476	U1477	U1478	C1479	C1480	C1481	C1482	C1483	G1484	A1485	U1486	A1487	U1488	G1489	G1490	C1491	G1492	C1493	G1494	A1495	A1496	A1497	C1498	C1499	G1500	G1501	G1502	A1503	C1504	G1505	C1506	C1507	C1508	G1509	U1510	U1511	G1512	A1513	G1514	C1515	U1516	A1517	A1518	C1519	C1520	G1521	G1522	U1523	A1524	C1525
+REACTIVITY:1     	0.0003	   0.0001	   0.0007	   0.0004	   0.0001	   0.0016	   0.0000	   0.0001	   0.0001	   0.0009	   0.0000	   0.0000	   0.0005	   0.0010	   0.0008	   0.0002	   0.0025	   0.0004	   0.0002	   0.0001	   0.0001	   0.0001	   0.0000	   0.0014	   0.0002	   0.0001	   0.0002	   0.0000	   0.0000	   0.0002	   0.0001	   0.0003	   0.0001	   0.0010	   0.0007	   0.0030	   0.0002	   0.0000	   0.0004	   0.0003	   0.0001	   0.0001	   0.0049	   0.0019	   0.0017	   0.0013	   0.0004	   0.0006	   0.0002	   0.0001	   0.0001	   0.0003	   0.0001	   0.0000	   0.0012	   0.0007	   0.0002	   0.0002	   0.0000	   0.0001	   0.0001	   0.0004	   0.0001	   0.0001	   0.0003	   0.0003	   0.0010	   0.0004	   0.0001	   0.0001	   0.0001	   0.0003	   0.0245	   0.0001	   0.0001	   0.0004	   0.0063	   0.0003	   0.0003	   0.0010	   0.0001	   0.0000	   0.0000	   0.0001	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000
+
+REACTIVITY_ERROR:1     	0.0004	   0.0001	   0.0005	   0.0001	   0.0001	   0.0003	   0.0000	   0.0001	   0.0001	   0.0003	   0.0000	   0.0001	   0.0001	   0.0005	   0.0003	   0.0002	   0.0003	   0.0001	   0.0003	   0.0001	   0.0001	   0.0000	   0.0000	   0.0000	   0.0001	   0.0001	   0.0002	   0.0000	   0.0001	   0.0000	   0.0002	   0.0000	   0.0001	   0.0001	   0.0001	   0.0004	   0.0001	   0.0000	   0.0001	   0.0001	   0.0000	   0.0002	   0.0026	   0.0011	   0.0009	   0.0001	   0.0001	   0.0001	   0.0000	   0.0001	   0.0000	   0.0001	   0.0001	   0.0000	   0.0013	   0.0004	   0.0003	   0.0001	   0.0000	   0.0001	   0.0000	   0.0001	   0.0000	   0.0000	   0.0001	   0.0001	   0.0003	   0.0001	   0.0000	   0.0000	   0.0001	   0.0001	   0.0110	   0.0001	   0.0001	   0.0004	   0.0065	   0.0003	   0.0001	   0.0006	   0.0001	   0.0000	   0.0000	   0.0001	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000

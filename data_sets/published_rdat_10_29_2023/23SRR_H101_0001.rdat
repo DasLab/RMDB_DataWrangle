@@ -1,0 +1,28 @@
+RDAT_VERSION	0.32
+NAME	23S rRNA, H101, E. coli
+SEQUENCE	GGCCGGGUGUGUAAGCGCAGCGAUGCGUUGAGCUAACCGGUAC
+
+STRUCTURE	...........................................
+
+COMMENT	RNA was prepared using in vitro Synthesis, Assembly, and Translation (iSAT) reactions and probed at 37 C
+COMMENT iSAT reactions prepared as described in Fritz, B.R., Jamil, O.K., Jewett, M.C. (2015) Implications of macromolecular crowding and reducing conditions for in vitro ribosome construction. Nucleic Acids Res. May 19;43(9):4774–84
+COMMENT	Reactivities reported as r reactivities, which include contributions from reverse transcription STOPS and MUTATIONS
+COMMENT r defined in Yu, A.M, Evans, M.E., and Lucks, J.B. (2018) Estimating RNA structure chemical probing reactivites from reverse transcriptase stops and mutations. doi: 10.1101/292532
+COMMENT field STRUCTURE intentionally left as all dots
+COMMENT Average reactivities from 3 replicate experiments reported.
+COMMENT Errors are standard deviations at each nucleotide.
+
+ANNOTATION_DATA:1   modifier:1M7 experimentType:StandardState
+ANNOTATION_DATA:2   modifier:Nomod
+
+OFFSET	2837
+
+SEQPOS		G2838    G2839    C2840    C2841    G2842    G2843    G2844    U2845    G2846    U2847    G2848    U2849    A2850    A2851    G2852    C2853    G2854    C2855    A2856    G2857    C2858    G2859    A2860    U2861    G2862    C2863    G2864    U2865    U2866    G2867    A2868    G2869    C2870    U2871    A2872    A2873    C2874    C2875    G2876    G2877    U2878    A2879    C2880
+
+REACTIVITY:1     	9.98E-05    0.000361364    1.72E-05    2.91E-05    0.000100889    0.000113881    0.00014629    2.82E-05    0.000188258    7.77E-05    0.000389828    9.99E-05    4.15E-05    3.59E-05    1.22E-05    0.000119777    9.18E-05    9.57E-06    8.32E-06    6.33E-05    2.33E-05    0.000215128    6.48E-05    1.74E-05    7.07E-05    0.00019238    0.000325506    2.97E-05    3.67E-05    2.60E-06    7.61E-06    1.79E-06    0    0    3.65E-06    6.31E-06    0    7.28E-06    2.07E-05    3.42E-06    7.70E-05    2.54E-05    1.29E-06
+
+REACTIVITY:2     	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+REACTIVITY_ERROR:1     	2.62E-05    5.31E-05    1.49E-05    2.63E-05    0.000102849    7.11E-05    4.91E-05    4.89E-05    3.94E-05    6.05E-05    0.000378986    7.09E-05    4.17E-05    3.31E-05    2.11E-05    4.30E-05    8.14E-05    9.86E-06    1.06E-05    3.15E-05    1.57E-05    7.79E-05    2.20E-05    1.51E-05    6.45E-05    4.69E-05    9.25E-05    2.42E-05    6.36E-05    4.50E-06    1.32E-05    3.10E-06    0    0    6.32E-06    1.09E-05    0    8.62E-06    3.44E-05    5.92E-06    8.60E-05    1.55E-05    2.24E-06
+
+REACTIVITY_ERROR:2     	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0

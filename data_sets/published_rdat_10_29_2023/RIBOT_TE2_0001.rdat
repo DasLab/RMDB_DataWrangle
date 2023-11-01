@@ -1,0 +1,23 @@
+RDAT_VERSION	0.34
+NAME	Ribo-T v1, strand #2
+SEQUENCE	GGCCGGGUGUGUAAGCGCAGAAAAAAAAAGGAGGGCGCUUACCACU
+STRUCTURE	..............................................
+OFFSET	4347
+
+
+COMMENT	RNA was prepared using in vitro Synthesis, Assembly, and Translation (iSAT) reactions and probed at 37 C
+COMMENT	iSAT reactions prepared as described in Fritz, B.R., Jamil, O.K., Jewett, M.C. (2015) Implications of macromolecular crowding and reducing conditions for in vitro ribosome construction. Nucleic Acids Res. May 19;43(9):477484
+COMMENT	Reactivities reported as r reactivities, which include contributions from reverse transcription STOPS and MUTATIONS
+COMMENT	r defined in Yu, A.M, Evans, M.E., and Lucks, J.B. (2018) Estimating RNA structure chemical probing reactivites from reverse transcriptase stops and mutations. doi: 10.1101/292532
+COMMENT	field STRUCTURE intentionally left as all dots
+COMMENT	Average reactivities from 3 replicate experiments reported.
+COMMENT	Errors are standard deviations at each nucleotide.
+
+ANNOTATION	experimentType:StandardState
+
+ANNOTATION_DATA:1     	modifier:1M7
+
+SEQPOS	G4348	G4349	C4350	C4351	G4352	G4353	G4354	U4355	G4356	U4357	G4358	U4359	A4360	A4361	G4362	C4363	G4364	C4365	A4366	G4367	A4368	A4369	A4370	A4371	A4372	A4373	A4374	A4375	A4376	G4377	G4378	A4379	G4380	G4381	G4382	C4383	G4384	C4385	U4386	U4387	A4388	C4389	C4390	A4391	C4392	U4393
+REACTIVITY:1     	0.0003	   0.0008	   0.0004	   0.0000	   0.0000	   0.0002	   0.0007	   0.0002	   0.0009	   0.0007	   0.0051	   0.0011	   0.0003	   0.0002	   0.0006	   0.0007	   0.0009	   0.0030	   0.0024	   0.0064	   0.0012	   0.0012	   0.0012	   0.0056	   0.0050	   0.0034	   0.0028	   0.0007	   0.0003	   0.0002	   0.0005	   0.0001	   0.0002	   0.0003	   0.0003	   0.0002	   0.0009	   0.0015	   0.0008	   0.0013	   0.0004	   0.0004	   0.0031	   0.0003	   0.0011	   0.0018
+
+REACTIVITY_ERROR:1     	0.0002	   0.0003	   0.0001	   0.0000	   0.0000	   0.0002	   0.0001	   0.0001	   0.0003	   0.0001	   0.0023	   0.0010	   0.0003	   0.0002	   0.0003	   0.0007	   0.0007	   0.0026	   0.0002	   0.0008	   0.0001	   0.0007	   0.0001	   0.0023	   0.0024	   0.0020	   0.0013	   0.0003	   0.0001	   0.0001	   0.0001	   0.0000	   0.0000	   0.0001	   0.0001	   0.0001	   0.0001	   0.0013	   0.0004	   0.0014	   0.0002	   0.0001	   0.0031	   0.0002	   0.0010	   0.0019

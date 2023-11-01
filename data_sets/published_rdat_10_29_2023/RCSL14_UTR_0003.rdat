@@ -1,0 +1,24 @@
+RDAT_VERSION	0.34
+NAME	Covid19 RC.TRS
+SEQUENCE	CAGUAAUUAGUUAUUAAUUAUACUGCGUGAGUGCACUAAGCAUGCAGCCGAGUGACAGCCACACAGAUUUUAAAGUUCGUUUAGAGAACAGAUCUACAAGAGAUCGAAAGUUGGUUGGUUUGUUACCUGGGAAGGUAUAAACCUUUAAU
+STRUCTURE	..(((((((.....))))))).(((((((..((...))..)))))))(((.((((((((((.((.((((((...((((.......)))).(((((.....))))).)))))).))))).))))))).)))((((((....))))))...
+OFFSET	0
+
+
+COMMENT	Preliminary data,  1 replicates
+COMMENT	RNA was heat to 90 C for 2 min and cool RT for 10 min, then incubated at 50 C for 20 min at pH 8.0 with 10 mM MgCl2 to aid folding.
+COMMENT	Additional sequences at 5' and 3' end not shown; two different flanking sequences were not used and averaged.
+COMMENT	Data are not normalized based on GAGUA pentaloops in flanking sequences (not shown).
+COMMENT	DMS, CMCT, and SHAPE not used normalized so that As, Us, or all 5 loop residues give mean reactivity of 1.0.
+COMMENT	Note: 
+COMMENT Values are winsorized above 2 and below 0.
+COMMENT	Taken in Feb 2020 for COVID19.
+
+ANNOTATION	experimentType:StandardState	chemical:Na-HEPES:50mM(pH8.0)	chemical:MgCl2:10mM	temperature:24C	processing:backgroundSubtraction	processing:overmodificationCorrection
+
+ANNOTATION_DATA:1     	modifier:1M7
+
+SEQPOS	C1	A2	G3	U4	A5	A6	U7	U8	A9	G10	U11	U12	A13	U14	U15	A16	A17	U18	U19	A20	U21	A22	C23	U24	G25	C26	G27	U28	G29	A30	G31	U32	G33	C34	A35	C36	U37	A38	A39	G40	C41	A42	U43	G44	C45	A46	G47	C48	C49	G50	A51	G52	U53	G54	A55	C56	A57	G58	C59	C60	A61	C62	A63	C64	A65	G66	A67	U68	U69	U70	U71	A72	A73	A74	G75	U76	U77	C78	G79	U80	U81	U82	A83	G84	A85	G86	A87	A88	C89	A90	G91	A92	U93	C94	U95	A96	C97	A98	A99	G100	A101	G102	A103	U104	C105	G106	A107	A108	A109	G110	U111	U112	G113	G114	U115	U116	G117	G118	U119	U120	U121	G122	U123	U124	A125	C126	C127	U128	G129	G130	G131	A132	A133	G134	G135	U136	A137	U138	A139	A140	A141	C142	C143	U144	U145	U146	A147	A148	U149
+REACTIVITY:1     	0	  0	   1.8855	   0.7102	  0	  0	   0.0731	   0.1958	   0.4143	   0.7732	   1.1603	   1.5631	   1.8891	   1.5073	   1.5614	   0.8953	   0.6484	   0.4643	   0.3894	   0.3514	   0.4196	   0.5928	   0.6957	   0.0809	   0.0291	   0.0033	   0.0612	   0.2035	   0.2328	   0.7330	   0.8895	   1.1824	   0.8690	   0.9866	   0.6411	   0.7846	   0.3588	   0.8949	   0.9097	   1.1467	   0.6101	   0.1031	   0.2343	   0.2594	   0.1414	   0.1717	   0.2840	   0.2133	   0.1179	   0.0907	   0.6043	   0.7901	   0.0263	   0.0279	  0	   0.0413	   0.0500	   0.0976	   0.1123	  0	   0.0007	  0	   0.0410	   0.6106	   0.4377	   0.7353	   0.6792	   0.4602	   0.3339	   0.3404	   0.3955	   0.8641	   0.8727	   0.4796	   0.7485	   0.0776	   0.0183	   0.0215	   0.3912	   0.9648	   2	   2	   1.7272	   1.7009	   1.3121	   1.6506	   0.1557	   0.0976	   0.0494	  0	   0.8124	   0.0176	   0.0205	   0.0185	   0.0712	   1.3850	   1.3666	   0.2690	   0.9677	   0.5412	   0.6930	   0.4879	   0.0033	  0	  0	  0	   0.3135	   0.2865	   0.3847	   0.4924	   0.1407	   0.4720	   0.1674	   0.4099	   0.1596	   0.3974	   0.1531	   0.0351	  0	   0.1850	   1.0687	   0.1131	   0.0260	  0	  0	   0.0038	  0	   0.0760	   0.2629	   0.0610	   0.3067	   0.4408	   0.1514	   0.1046	  0	   0.7597	   1.2725	   1.0069	   0.9585	   0.7184	   0.5451	  0	  0	  0	  0	   0.1667	  0	  0	  0
+
+REACTIVITY_ERROR:1     	0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000	   0.0000
