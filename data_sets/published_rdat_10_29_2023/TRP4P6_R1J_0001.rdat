@@ -13,7 +13,7 @@ ANNOTATION	chemical:Na-HEPES:50mM(pH8.0)	chemical:MgCl2:10mM	temperature:24C	pro
 
 ANNOTATION_DATA:1     	modifier:nomod
 ANNOTATION_DATA:2     	modifier:DMS
-ANNOTATION_DATA:3     	modifier::1M7
+ANNOTATION_DATA:3     	modifier:1M7
 ANNOTATION_DATA:4     	modifier:CMCT
 ANNOTATION_DATA:5     	mutation:U248A	modifier:nomod
 ANNOTATION_DATA:6     	mutation:U248A	modifier:DMS

@@ -1,38 +1,62 @@
 %% create_kaggle_csv_from_RMDB2023_SCRIPT.m
 filedir = 'data_sets/published_rdat_10_29_2023';
-d = dir([filedir,'/*.rdat']);
-for i =  104; %810:length(d)
-    fprintf('Reading in %d of %d...\n',i,length(d));
-    dataset_name{i} = d(i).name;
-    r{i} = read_rdat_file(sprintf('%s/%s',filedir,d(i).name));
+rdats = dir([filedir,'/*.rdat']);
+for i =  1%1:length(rdats); %247; %find(contains(dataset_name,'TTYH2'))'
+    fprintf('Reading in %d of %d...\n',i,length(rdats));
+    dataset_name{i} = rdats(i).name;
+    r{i} = read_rdat_file(sprintf('%s/%s',filedir,rdats(i).name));
 end
 
 %%
-dataset_name = cell(length(d),1);
-modifier = cell(length(d),1);
-num_profiles = zeros(length(d),1);
-num_res = zeros(length(d),1);
-num_vals = zeros(length(d),1);
+dataset_name = cell(length(rdats),1);
+modifier = cell(length(rdats),1);
+num_profiles = zeros(length(rdats),1);
+num_res = zeros(length(rdats),1);
+num_vals = zeros(length(rdats),1);
+% TITR and MGTI were Joe's experiments -- DMS on miniTTR's
+% ETFMN and ETE3D date to 2014 when we still used NMIA, not 1M7
+filename_tags = {'DMS','MCA',  '1M7','NOMOD','NMD',  'MGPH',       'MG50'      ,'PH10',        '50C','MGTI','TITR','GLX',    'SYN41','ETFMN','ETE3D'};
+mods_for_tags = {'DMS','MOHCA','1M7','nomod','nomod','deg_Mg_pH10','deg_Mg_50C','deg_pH10','deg_50C','DMS', 'DMS' ,'glyoxal','nomod','NMIA' ,'NMIA'};
 for i = 1:length(r)
-    dataset_name{i} = d(i).name;
+    dataset_name{i} = rdats(i).name;
     modifier{i} = strip(get_tag(r{i}.annotations,'modifier'));
-    if isempty(modifier{i}) | strcmp(modifier,' '); modifier{i} = ''; end;
+    if isempty(modifier{i}) | strcmp(modifier,' '); 
+        modifier{i} = ''; 
+        for k = 1:length(filename_tags)
+            if contains(dataset_name{i},filename_tags{k})
+                modifier{i} = mods_for_tags{k};
+                break;
+            end
+        end
+    end;
+    modifier{i} = strrep( modifier{i},'none','nomod'); 
+    modifier{i} = strrep( modifier{i},'None','nomod'); 
+    if strcmp(modifier{i},'SHAPE')
+        if contains(dataset_name{i},'1M7')
+            modifier{i} = '1M7';
+        else
+            modifier{i} = 'NMIA';
+        end
+    end
+    if any(contains(r{i}.annotations,'MOHCA')) modifier{i} = 'MOHCA'; end;
     num_profiles(i) = size(r{i}.reactivity,2);
     num_res(i) = size(r{i}.reactivity,1);
     num_vals(i) = num_profiles(i) * num_res(i);
+    seq_length(i) = length(r{i}.sequence);
 end
 t = table(dataset_name,modifier,num_profiles,num_res,num_vals)
 
 
-%%
-mods = unique(modifier);
-fprintf('\n\n%20s %5s %9s %9s\n','modifier','Ndata','num_prof','num_res')
+%% how many RDATs are singly devoted each kind of modification? 
+%% Data sets with mixed modifiers will not be categorized here.
+mods = unique(modifier); numvals_for_mod = [];
 for i = 1:length(mods)
     idx = find(strcmp(modifier,mods{i}));
     numvals_for_mod(i) = sum(num_vals(idx));
 end
 [~,mod_sort_idx] = sort(numvals_for_mod,'descend');
 
+fprintf('\n\n%20s %5s %9s %9s\n','modifier','Ndata','num_prof','num_res')
 for n = 1:length(mods)
     i = mod_sort_idx(n);
     idx = find(strcmp(modifier,mods{i}));
@@ -41,57 +65,130 @@ end
 
 fprintf('%20s %5d %9d %9d\n','TOTAL',length(d),sum(num_profiles),sum(num_vals));
 
+%% how many profiles have each kind of modification? Look profile by profile for modifier DATA_ANNOTATION tags.
+mods_per_profile = {}; num_vals_per_profile = [];
+for i = 1:length(r)
+    if length(modifier{i})>1 & ~strcmp(modifier,' ');
+        data_annotations_mods = repmat({modifier{i}},1,length(r{i}.data_annotations));
+    else
+        data_annotations_mods = get_tag(r{i}.data_annotations,'modifier');
+        modlen = cellfun(@length,data_annotations_mods);
+        if max(modlen) == 0
+            fprintf('All blank modifiers (%3d): %s\n',i,dataset_name{i});
+        elseif any(modlen==0)
+            %fprintf('Some blank modifiers (%3d): %s\n',i,dataset_name{i});
+            data_annotations_mods( find(modlen==0)) = {'nomod'};
+        elseif any(modlen==1)
+            %fprintf('Some single-length-name mystery modifiers (%3d): %s\n',i,dataset_name{i});
+            %data_annotations_mods( find(modlen==1)) = {'nomod'};
+        end
+    end
+    data_annotations_mods = strrep(data_annotations_mods,'Nomod','nomod');
+    data_annotations_mods = strrep(data_annotations_mods,'Glyoxal','glyoxal');
+    data_annotations_mods = strrep(data_annotations_mods,'Terbium','terbium');
+    data_annotations_mods = strrep(data_annotations_mods,'SHAPE','NMIA');
+    data_annotations_mods(find(contains(data_annotations_mods,'HRF'))) = {'hydroxyl_radical'};
+    data_annotations_mods(find(contains(data_annotations_mods,'CMC'))) = {'CMCT'};
+    mods_for_rdat{i} = data_annotations_mods;
+    mods_per_profile = [mods_per_profile,data_annotations_mods];
+    if any(strcmp(mods_per_profile,''))
+        fprintf('Some blank modifiers (%3d): %s\n',i,dataset_name{i});
+        break
+    end
+    num_vals_per_profile = [num_vals_per_profile, repmat(num_res(i),1,length(r{i}.data_annotations))];
+end
+
+mods = unique(mods_per_profile); 
+numvals_for_mod = [];
+for i = 1:length(mods)
+    idx = find(strcmp(mods_per_profile,mods{i}));
+    numvals_for_mod(i) = sum(num_vals_per_profile(idx));
+end
+[~,mod_sort_idx] = sort(numvals_for_mod,'descend');
+
+fprintf('\n%30s %9s %9s\n','modifier','num_prof','num_res')
+for n = 1:length(mod_sort_idx)
+    i = mod_sort_idx(n);
+    idx = find(strcmp(mods_per_profile,mods{i}));
+    fprintf('%30s %9d %9d\n',mods{i},length(idx),sum(num_vals_per_profile(idx)));
+end
+
+fprintf('%30s %9d %9d\n\n\n','TOTAL',length(mods_per_profile),sum(num_vals_per_profile));
+
 %% BAD RDATs
-bad_rdats = {'HC16M2R_1M7_0001.rdat','HC16M2R_1M7_0002.rdat','HC16M2R_1M7_0003.rdat'}; %,'ETERNA_R82_0000.rdat','ETERNA_R82_0001.rdat','ETERNA_R83_0000.rdat','ETERNA_R83_0001.rdat'}; % still unresolved.
+bad_rdats = {'HC16M2R_1M7_0002.rdat','HC16M2R_1M7_0003.rdat'}; 
 for i = 1:length(dataset_name)
     ok(i) = ~any(contains(bad_rdats,dataset_name{i}));
 end
 
 %% Just grab 1M7 for initial tests.
-mod = '1M7';
-LENGTH_CUTOFF = 457; % max size in Ribonanza test set
-idx = find(ok' & strcmp(modifier,mod) & num_res <= LENGTH_CUTOFF); % there are some long ones, including HoxA9, skip those
-outdir_csv = 'data_sets/published_rdat_10_29_2023_CSV/rmdb_v1/1M7/';
-for i = idx'
-    outfile = [outdir_csv,'/train_',dataset_name{i},'.csv'];
-    condition = mod;
-    experiment_type_out = mod;
-    dataset_name_out = dataset_name{i};
-    d = struct();
-    d.conditions = {condition};
-    [r_norm,d.sequences,d.BLANK_OUT5,d.BLANK_OUT3,r_norm_err] = get_r_norm_from_rdat( r{i} );
-    nprof = size(r_norm,1);
-    output_idx = [1:nprof];
+output_mods = {'1M7','DMS','BzCN','NMIA','CMCT','deg_Mg_50C','deg_Mg_pH10','deg_50C','deg_pH10'};
+LENGTH_CUTOFF = 512; % max size in Ribonanza test set is 457; go up to 512 to make power of 2.
+for q = 1:length(output_mods)
+    mod = output_mods{q};
+    outdir_csv = sprintf('data_sets/rmdb_v1/%s/',mod);
+    for i = 731; %1:length(r)
+        if ~ok(i); continue; end;
+        if (seq_length(i) > LENGTH_CUTOFF); continue; end;
+        output_idx = find(strcmp(mods_for_rdat{i},mod));
+        if length(output_idx) == 0; continue; end;
+        if any(contains(r{i}.sequences,'X')); 
+            warning(sprintf('Sequences with X in %s',dataset_name{i}));
+            continue;
+        end
+        outfile = [outdir_csv,'/train_',dataset_name{i},'.csv'];
+        condition = mod;
+        experiment_type_out = mod;
+        dataset_name_out = dataset_name{i};
+        d = struct();
+        d.conditions = {condition};
+        [r_norm,d.sequences,d.BLANK_OUT5,d.BLANK_OUT3,r_norm_err] = get_r_norm_from_rdat( r{i} );
+        d.sequences = strrep(upper(d.sequences),'U','T');
+        if all(isnan(r_norm(:))); continue; end; % NEIL1_DMS_0020 edge case.
+            
+        % special treatment of old Lucks data.
+        datatype = get_tag(r{i},'datatype');
+        if ~isempty(datatype) & ~isempty(datatype{1}) & any(contains(datatype,'RHO'));
+            r_norm_err = nan + 0*r_norm;
+            output_idx = find(contains(datatype,'REACTIVITY:'));
+            rel_err = 1./sqrt(r_norm(output_idx+1,:)); % actual counts for 1M7 are in line after RHO values
+            r_norm_err(output_idx,:) = r_norm(output_idx,:) .* rel_err;
+        end;
 
-    % special treatment of Lucks data.
-    datatype = get_tag(r{i},'datatype');
-    if ~isempty(datatype) & ~isempty(datatype{1}); 
-        r_norm_err = nan + 0*r_norm;
-        output_idx = find(contains(datatype,'REACTIVITY:')); 
-        rel_err = 1./sqrt(r_norm(output_idx+1,:)); % actual counts for 1M7 are in line after RHO values
-        r_norm_err(output_idx,:) = r_norm(output_idx,:) .* rel_err;
-    end;
-
-    [d.r_norm, d.r_norm_err] = normalize_reactivity(r_norm,r_norm_err,output_idx,d.BLANK_OUT5, d.BLANK_OUT3, d.conditions );
-    if isempty(d.r_norm_err); d.r_norm_err = NaN + 0*d.r_norm;end
-    d.reads = NaN*ones(nprof,1);
-    d.signal_to_noise = NaN*ones(nprof,1);
-    for k = 1:size(d.r_norm,1)
-        d.signal_to_noise(k) = ubr_estimate_signal_to_noise_ratio(d.r_norm(k,:)',d.r_norm_err(k,:)');
+        [d.r_norm, d.r_norm_err] = normalize_reactivity(r_norm,r_norm_err,output_idx,d.BLANK_OUT5, d.BLANK_OUT3, d.conditions );
+        if isempty(d.r_norm_err); d.r_norm_err = NaN + 0*d.r_norm;end
+        nprof = size(r_norm,1);
+        d.reads = NaN*ones(nprof,1);
+        d.signal_to_noise = NaN*ones(nprof,1);
+        for k = 1:size(d.r_norm,1)
+            d.signal_to_noise(k) = ubr_estimate_signal_to_noise_ratio(d.r_norm(k,:)',d.r_norm_err(k,:)');
+        end
+        output_kaggle_csv(outfile, d, output_idx, condition, experiment_type_out, dataset_name_out);
     end
-    output_kaggle_csv(outfile, d, output_idx, condition, experiment_type_out, dataset_name_out);
 end
 
-
 %% Prepare final table
-infiles = dir( [outdir_csv,'/train*.csv'] );
-t_train = concatenate_tables(infiles);
+for q = 1:length(output_mods)
+    mod = output_mods{q};
+    outdir_csv = sprintf('data_sets/rmdb_v1/%s/',mod);
+    infiles = dir( [outdir_csv,'/train*.csv'] );
+    t_train_all{q} = concatenate_tables(infiles);
+    %t_train_all{q} = concatenate_tables(infiles(1:min(20,length(infiles))));
+end
+t_train = concatenate_tables(t_train_all);
 t_train = renamevars(t_train,'id','sequence_id')
+t_train.sequence = strrep(upper(t_train.sequence),'T','U');
 check_dataset_stats(t_train);
 
 %%
-data_v1_version = 'v1.1.0'
-outdir = sprintf('data_sets/published_rdat_10_29_2023_CSV/rmdb_v1/%s/',data_v1_version);
+clear t_train_all
+
+%%
+%data_v1_version = 'v1.0.0'; % original output with just three RDAT entries for 1M7
+%data_v1_version = 'v1.1.0'; % all available 1M7 entries except HC16M2R
+data_v1_version = 'v1.2.0'; % all available 1M7, DMS, CMCT,... entries
+
+outdir = sprintf('data_sets/rmdb_v1/%s/',data_v1_version);
 if ~exist(outdir,'dir'); mkdir(outdir); end;
 outfile = sprintf('%s/rmdb_data.%s.csv',outdir,data_v1_version);
 fprintf('Outputting %d rows to %s.\n',height(t_train),outfile);
@@ -106,14 +203,22 @@ title(outfile,'interpreter','none');
 fprintf('Number of profiles with SN_filter=1: %d/%d (%.1f %%)\n',... ...
     sum(t_train.SN_filter),height(t_train),100*sum(t_train.SN_filter)/height(t_train));
 
-%%
-
+%% Check sequences
+for i = 1:length(t_train.sequence)
+    seq = t_train.sequence{i}; %upper(t_train.sequence{i});
+    seq_ok = all(seq=='A'|seq=='C'|seq=='G'|seq=='U');
+    if ~seq_ok; fprintf('Problem sequence in %s: %s\n',t_train.dataset_name{i},seq); end;
+end
 
 %%
 names = t_train.Properties.VariableNames;
 cols = find(contains(names,'reactivity_') & ~contains(names,'reactivity_error'));
-imagesc(cell2mat(table2cell(t_train(:,cols))),[-1,1]);
+good_idx =find(t_train.SN_filter);
+imagesc(cell2mat(table2cell(t_train(good_idx(1:100:end),cols))),[-1,1]);
 colormap([0.7 0.7 0.7; redwhiteblue(-0.1,0.1)])
 colorbar
 set(gcf,'color','white');
 xlabel('Position');ylabel('Profile')
+
+%% 
+save workspaces/save_create_kaggle_csv_from_RMDB2023.mat -v7.3

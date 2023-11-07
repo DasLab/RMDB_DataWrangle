@@ -1,0 +1,14 @@
+filenames = {'031619_hc16m2r_1M7_Elim_578931'}
+reorder = [1, 8,9,10,1,11,12,13,1,14,15,16,1,17,18,19,1,2,3,4,1,5,6,7,1,44,45,46,1,47,48,49,1,50,51,52,1,8,53,54,1,11,55,56,1,14,57,58,1,17,59,60,1,2,61,62,1,5,63,64,1,65,66,67,1,68,69,70,1,38,39,40,1,41,42,43,1,20,21,22,1,23,24,25,1,26,27,28,1,29,30,31,1,32,33,34,1,35,36,37,1,71,24,72,1,73,27,74,1,75,30,76,1,77,33,78,1,79,36,80,1,81,82,83];
+[d_align, d_ref_align, ylimit, labels] = quick_look(filenames, ylimit, reorder);
+align_blocks = {1:124}
+offset = -35;
+d_align_dp_fine = align_by_DP_fine(d_align_before_more_alignment, align_blocks);
+sequence = 'GGGAACGACTCGAGTAGAGTCGAAAAATCTTACTTGGTAGACTCGCAGGAAGTCTACCGAGTAAGAGAAAGAGGAAAGACGGCCAAATTGCGGGAAAGGGGACAACAGCCGTTCAGTACCAAGTCTCAGGGAAACTTCAGATGGCCTCGCAAAGGGTATGGTAATAAGCTGACGGACATGGTCCTAACCACGCAGTCAAGTCCTAAGTCAACAGCCTTGGCTGTTGATATGGATGCATTTCGATCCAACCGAGGCTCATTCTTGTAATTCATGGCCGTCGGGGAGGCACTTCGGTGCCTCTGATAACAACTTGAAATAAGGTTGGCTCAACGGCGCGTGACAGACAATTCGCGCTGGAACTGCAGTCGGACCTAAAGGAGTCGAGTAGACTCCAACAAAAGAAACAACAACAACAAC';
+sequence = strrep(sequence, 'T', 'U');
+structure = '.................................................................................................................................................................................................................................................................................................................................................................................................................................';
+first_RT_nucleotide = length(sequence) - 20 + offset; 
+data_types = [repmat({'SHAPE'}, 1,124)];
+xsel = []; clf;
+[xsel, seqpos, area_pred] = annotate_sequence(d_align, xsel, sequence, offset, data_types, first_RT_nucleotide, structure);
+[area_peak, darea_peak] = fit_to_gaussians(d_align, xsel); 
