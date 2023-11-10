@@ -1,1 +1,3 @@
 workspaces/*
+data_sets/predictions/
+*.DS_Store
